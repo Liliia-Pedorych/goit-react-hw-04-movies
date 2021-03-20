@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import HomeView from './views/HomeView';
 import MovieSearchView from './views/MovieSearchView';
+import MovieDetailsView from './views/MovieDetailsView';
 
 const App = () => (
   <>
@@ -29,10 +30,11 @@ const App = () => (
 
     <Switch>
       <Route path="/" exact component={HomeView} />
+      <Route path="/movies/:movieId" component={MovieDetailsView} />
       <Route path="/movies" component={MovieSearchView} />
-      {/* <Route path="/movies/:movieId" component={} />
-    <Route path="/movies/:movieId/cast" component={} />
-    <Route path="/movies/:movieId/reviews" component={} /> */}
+
+      {/* <Route path="/movies/:movieId/cast" component={} />
+      <Route path="/movies/:movieId/reviews" component={} /> */}
     </Switch>
   </>
 );
