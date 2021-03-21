@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class MoviesPage extends Component {
   state = {
-    // movies: [],
     query: '',
   };
 
@@ -31,8 +30,8 @@ class MoviesPage extends Component {
             type="text"
             value={this.state.query}
             onChange={this.handleChange}
-            //   autocomplete="off"
-            //   autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search films"
           />
         </form>

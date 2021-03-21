@@ -11,9 +11,7 @@ const getPopularMovie = () => {
 
 const searchMovie = query => {
   return axios
-    .get(
-      `/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`,
-    )
+    .get(`/search/movie?api_key=${apiKey}&language=en-US&query=${query}`)
     .then(response => response.data);
 };
 
@@ -34,15 +32,6 @@ const getMovieReviews = movieId => {
     .get(`/movie/${movieId}/reviews?api_key=${apiKey}&language=en-US`)
     .then(response => response.data);
 };
-
-// const getImages = ({ searchQuery = '', page = 1 }) => {
-//   const apiKey = '19832494-5cd14cdef5946ada4556f0091';
-//   return axios
-//     .get(
-//       `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=12`,
-//     )
-//     .then(res => res.data.hits);
-// };
 
 export {
   getPopularMovie,

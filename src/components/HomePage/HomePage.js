@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import routes from '../../routes';
 
 class HomePage extends Component {
   render() {
@@ -9,7 +10,7 @@ class HomePage extends Component {
         <ul>
           {this.props.movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`${routes.movies}/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>

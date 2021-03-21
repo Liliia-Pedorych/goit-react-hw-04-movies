@@ -5,8 +5,6 @@ import MovieDetailsPage from '../components/MovieDetailsPage';
 import Cast from '../components/Cast';
 import Reviews from '../components/Reviews';
 
-// import axios from 'axios';
-
 class MovieDetailsView extends Component {
   state = {
     poster_path: '',
@@ -52,10 +50,22 @@ class MovieDetailsView extends Component {
         <h2>Adittional information</h2>
         <ul>
           <li>
-            <NavLink to={`${match.url}/cast`}>Cast</NavLink>
+            <NavLink
+              to={`${match.url}/cast`}
+              lassName="NavLink"
+              activeClassName="NavLink--active"
+            >
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
+            <NavLink
+              to={`${match.url}/reviews`}
+              lassName="NavLink"
+              activeClassName="NavLink--active"
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
 

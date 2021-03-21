@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { getPopularMovie } from '../utils/movieApi';
 import HomePage from '../components/HomePage';
 
@@ -14,13 +13,10 @@ class HomeView extends Component {
     await getPopularMovie()
       .then(({ results }) => {
         this.setState({ movies: results });
-        console.log(this.state.movies);
+        // console.log(this.state.movies);
       })
       .catch(error => console.log(error))
       .finally();
-    //
-
-    // this.setState({ movies: response.data.results });
   }
 
   render() {
