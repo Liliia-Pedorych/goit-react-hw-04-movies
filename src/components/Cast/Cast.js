@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getMovieCast } from '../../utils/movieApi';
+import styles from './Cast.module.css';
 
 class Cast extends Component {
   state = {
@@ -20,18 +21,21 @@ class Cast extends Component {
 
   render() {
     return (
-      <ul>
-        {this.state.cast.map(({ cast_id, profile_path, name, character }) => (
-          <li key={cast_id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-              alt={name}
-            />
-            <p>Name: {name}</p>
-            <p>Character: {character}</p>
-          </li>
-        ))}
-      </ul>
+      <div className={styles.castWraper}>
+        <ul className={styles.castList}>
+          {this.state.cast.map(({ cast_id, profile_path, name, character }) => (
+            <li key={cast_id} className={styles.castItem}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                alt={name}
+                className={styles.actorPhoto}
+              />
+              <p>Name: {name}</p>
+              <p>Character: {character}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }

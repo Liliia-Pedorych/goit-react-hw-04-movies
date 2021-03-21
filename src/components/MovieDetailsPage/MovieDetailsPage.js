@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = ({
   poster_path,
@@ -9,19 +10,30 @@ const MovieDetailsPage = ({
   genres,
 }) => {
   return (
-    <>
-      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
-      <h1> {title}</h1>
-      <p>Rating: {vote_average}</p>
-      <p>
-        Genres:
-        {genres.map(genre => (
-          <li key={genre.name}>{genre.name}</li>
-        ))}
-      </p>
-      <p>Release date: {release_date}</p>
-      <p>Overview: {overview}</p>
-    </>
+    <div className={styles.wraper}>
+      <img
+        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+        alt={title}
+        className={styles.poster}
+      />
+      <div className={styles.movieInfoWraper}>
+        <h2> {title}</h2>
+
+        <h3>Genres: </h3>
+
+        <p className={styles.genres}>
+          {genres.map(genre => (
+            <li key={genre.name}>{genre.name}</li>
+          ))}
+        </p>
+        <h3>Release date: </h3>
+        <p>{release_date}</p>
+
+        <h3>Overview: </h3>
+        <p>{overview}</p>
+        <p className={styles.rating}>Rating: {vote_average}</p>
+      </div>
+    </div>
   );
 };
 

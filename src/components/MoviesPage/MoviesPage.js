@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './MoviePage.module.css';
 
 class MoviesPage extends Component {
   state = {
@@ -20,11 +21,9 @@ class MoviesPage extends Component {
 
   render() {
     return (
-      <>
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit">
-            <span>Search</span>
-          </button>
+      <div className={styles.searchBar}>
+        <form onSubmit={this.handleSubmit} className={styles.searchForm}>
+          <button type="submit" className={styles.searchFormButton}></button>
 
           <input
             type="text"
@@ -33,6 +32,7 @@ class MoviesPage extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search films"
+            className={styles.searchFormInput}
           />
         </form>
         {/* <ul>
@@ -40,7 +40,7 @@ class MoviesPage extends Component {
             <li key={movie.id}>{movie.title}</li>
           ))}
         </ul> */}
-      </>
+      </div>
     );
   }
 }

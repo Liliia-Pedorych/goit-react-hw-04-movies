@@ -1,0 +1,31 @@
+.wraper {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.poster {
+  display: block;
+  max-width: 300px;
+}
+
+.movieInfoWraper {
+  padding-left: 35px;
+  font-size: 18px;
+}
+
+.rating {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(225, 145, 0);
+}
+
+.movieInfoWraper h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: rgb(225, 145, 0);
+}
+
+.movieInfoWraper p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}

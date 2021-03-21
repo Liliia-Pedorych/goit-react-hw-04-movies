@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './ErrorPage.module.css';
 
 const ErrorPage = () => {
   return (
-    <div>
-      404 ERROR Back to <Link to="/">HomePage</Link> please
+    <div className={styles.title}>
+      404 ERROR Back to{' '}
+      <Link to="/" className={styles.homeLink}>
+        Home
+      </Link>{' '}
+      page please
     </div>
   );
 };

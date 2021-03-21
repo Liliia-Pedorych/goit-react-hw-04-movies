@@ -4,6 +4,7 @@ import { getMovieById } from '../utils/movieApi';
 import MovieDetailsPage from '../components/MovieDetailsPage';
 import Cast from '../components/Cast';
 import Reviews from '../components/Reviews';
+import '../App.css';
 
 class MovieDetailsView extends Component {
   state = {
@@ -47,27 +48,29 @@ class MovieDetailsView extends Component {
           overview={overview}
           genres={genres}
         />
-        <h2>Adittional information</h2>
-        <ul>
-          <li>
-            <NavLink
-              to={`${match.url}/cast`}
-              lassName="NavLink"
-              activeClassName="NavLink--active"
-            >
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={`${match.url}/reviews`}
-              lassName="NavLink"
-              activeClassName="NavLink--active"
-            >
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
+        <div className="additionalInformWraper">
+          <h2 className="additionalInform">Adittional information</h2>
+          <ul>
+            <li className="additionalInformItem">
+              <NavLink
+                to={`${match.url}/cast`}
+                className="NavLink"
+                activeClassName="NavLink--active"
+              >
+                Cast
+              </NavLink>
+            </li>
+            <li className="additionalInformItem">
+              <NavLink
+                to={`${match.url}/reviews`}
+                className="NavLink"
+                activeClassName="NavLink--active"
+              >
+                Reviews
+              </NavLink>
+            </li>
+          </ul>
+        </div>
 
         <Route path={`${match.path}/cast`} component={Cast} />
         <Route path={`${match.path}/reviews`} component={Reviews} />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { searchMovie } from '../utils/movieApi';
 import { Link } from 'react-router-dom';
 import MoviesPage from '../components/MoviesPage';
+import '../App.css';
 
 class MovieSearchView extends Component {
   state = {
@@ -25,7 +26,7 @@ class MovieSearchView extends Component {
         <MoviesPage onSubmit={this.onChangeSearchQuery} />
         <ul>
           {this.state.movies.map(movie => (
-            <li key={movie.id}>
+            <li key={movie.id} className="movieItem">
               <Link to={`${this.props.match.url}/${movie.id}`}>
                 {movie.title}
               </Link>

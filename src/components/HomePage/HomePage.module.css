@@ -1,0 +1,12 @@
+.wraper {
+  background-color: rgba(95, 95, 95, 0.1);
+  padding: 15px;
+}
+
+.title {
+  font-style: italic;
+}
+
+.movieItem {
+  margin-bottom: 5px;
+}
