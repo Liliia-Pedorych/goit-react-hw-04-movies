@@ -9,26 +9,31 @@ class Reviews extends Component {
   async componentDidMount() {
     const { movieId } = this.props.match.params;
     await getMovieReviews(movieId)
-      .then(data => {
-        this.setState({ reviews: data.results });
-        // console.log(data.results);
-        console.log(this.state.reviews);
+      .then(({ results }) => {
+        this.setState({ reviews: results });
+        // console.log(results);
+        // console.log(this.state.reviews);
       })
       .catch(error => console.log(error))
       .finally();
   }
 
   render() {
+    const { reviews } = this.state;
     return (
-      //   <h1>Reviews</h1>
-      <ul>
-        {this.state.reviews.map(item => (
-          <li key={item.id}>
-            <p>Name: {item.author}</p>
-            <p>{item.content}</p>
-          </li>
-        ))}
-      </ul>
+      <>
+        {!reviews.length && <p>We don`t have reviews for this movie</p>}
+        {reviews.length > 0 && (
+          <ul>
+            {reviews.map(({ id, author, content }) => (
+              <li key={id}>
+                <p>Name: {author}</p>
+                <p>{content}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
     );
   }
 }

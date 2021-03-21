@@ -9,9 +9,9 @@ class Cast extends Component {
   async componentDidMount() {
     const { movieId } = this.props.match.params;
     await getMovieCast(movieId)
-      .then(data => {
-        this.setState({ cast: data.cast });
-        console.log(data.cast);
+      .then(({ cast }) => {
+        this.setState({ cast: cast });
+        // console.log(cast);
       })
       .catch(error => console.log(error))
       .finally();
@@ -21,14 +21,14 @@ class Cast extends Component {
   render() {
     return (
       <ul>
-        {this.state.cast.map(item => (
-          <li key={item.cast_id}>
+        {this.state.cast.map(({ cast_id, profile_path, name, character }) => (
+          <li key={cast_id}>
             <img
-              src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
-              alt="{item.name}"
+              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+              alt={name}
             />
-            <p>Name: {item.name}</p>
-            <p>Character: {item.character}</p>
+            <p>Name: {name}</p>
+            <p>Character: {character}</p>
           </li>
         ))}
       </ul>
