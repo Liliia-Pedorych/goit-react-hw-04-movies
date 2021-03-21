@@ -23,6 +23,18 @@ const getMovieById = movieId => {
     .then(response => response.data);
 };
 
+const getMovieCast = movieId => {
+  return axios
+    .get(`/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`)
+    .then(response => response.data);
+};
+
+const getMovieReviews = movieId => {
+  return axios
+    .get(`/movie/${movieId}/reviews?api_key=${apiKey}&language=en-US`)
+    .then(response => response.data);
+};
+
 // const getImages = ({ searchQuery = '', page = 1 }) => {
 //   const apiKey = '19832494-5cd14cdef5946ada4556f0091';
 //   return axios
@@ -32,4 +44,10 @@ const getMovieById = movieId => {
 //     .then(res => res.data.hits);
 // };
 
-export { getPopularMovie, searchMovie, getMovieById };
+export {
+  getPopularMovie,
+  searchMovie,
+  getMovieById,
+  getMovieCast,
+  getMovieReviews,
+};

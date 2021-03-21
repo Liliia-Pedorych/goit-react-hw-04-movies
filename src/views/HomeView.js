@@ -12,7 +12,7 @@ class HomeView extends Component {
     await getPopularMovie()
       .then(({ results }) => {
         this.setState({ movies: results });
-        // console.log(results);
+        console.log(results);
       })
       .catch(error => console.log(error))
       .finally();

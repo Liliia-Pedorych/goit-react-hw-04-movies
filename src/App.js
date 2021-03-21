@@ -32,9 +32,6 @@ const App = () => (
       <Route path="/" exact component={HomeView} />
       <Route path="/movies/:movieId" component={MovieDetailsView} />
       <Route path="/movies" component={MovieSearchView} />
-
-      {/* <Route path="/movies/:movieId/cast" component={} />
-      <Route path="/movies/:movieId/reviews" component={} /> */}
     </Switch>
   </>
 );

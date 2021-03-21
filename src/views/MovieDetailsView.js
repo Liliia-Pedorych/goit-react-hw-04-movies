@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { getMovieById } from '../utils/movieApi';
 import MovieDetailsPage from '../components/MovieDetailsPage';
+import Cast from '../components/Cast';
+import Reviews from '../components/Reviews';
 
 // import axios from 'axios';
 
@@ -20,15 +22,11 @@ class MovieDetailsView extends Component {
     await getMovieById(movieId)
       .then(data => {
         this.setState({ ...data });
+        // console.log(data);
       })
       .catch(error => console.log(error))
       .finally();
   }
-
-  getGenres = () => {
-    const genreName = this.state.genres.map(genre => genre.name);
-    return genreName.join(', ');
-  };
 
   render() {
     const {
@@ -37,7 +35,10 @@ class MovieDetailsView extends Component {
       vote_average,
       release_date,
       overview,
+      genres,
     } = this.state;
+
+    const { match } = this.props;
     return (
       <>
         <MovieDetailsPage
@@ -46,24 +47,20 @@ class MovieDetailsView extends Component {
           vote_average={vote_average}
           release_date={release_date}
           overview={overview}
-          ganres={this.getGenres}
+          genres={genres}
         />
+        <h2>Adittional information</h2>
         <ul>
           <li>
-            <Link
-            // to={`/movies/${movie.id}`}
-            >
-              Cast
-            </Link>
+            <NavLink to={`${match.url}/cast`}>Cast</NavLink>
           </li>
           <li>
-            <Link
-            // to={`/movies/${movie.id}`}
-            >
-              Reviews
-            </Link>
+            <NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
           </li>
         </ul>
+
+        <Route path={`${match.path}/cast`} component={Cast} />
+        <Route path={`${match.path}/reviews`} component={Reviews} />
       </>
     );
   }
