@@ -4,6 +4,8 @@ import { getMovieById } from '../utils/movieApi';
 import MovieDetailsPage from '../components/MovieDetailsPage';
 import Cast from '../components/Cast';
 import Reviews from '../components/Reviews';
+import routes from '../routes';
+
 import '../App.css';
 
 class MovieDetailsView extends Component {
@@ -27,6 +29,14 @@ class MovieDetailsView extends Component {
       .finally();
   }
 
+  handleGoBack = () => {
+    const { history, location } = this.props;
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
+    }
+    history.push(routes.home);
+  };
+
   render() {
     const {
       poster_path,
@@ -38,8 +48,12 @@ class MovieDetailsView extends Component {
     } = this.state;
 
     const { match } = this.props;
+
     return (
       <>
+        <button type="button" className="goBackBtn" onClick={this.handleGoBack}>
+          Go back
+        </button>
         <MovieDetailsPage
           poster_path={poster_path}
           title={title}
