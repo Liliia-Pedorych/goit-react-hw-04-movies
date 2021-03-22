@@ -21,10 +21,11 @@ class MovieSearchView extends Component {
   };
 
   render() {
+    const { movies } = this.state;
     return (
       <>
         <MoviesPage onSubmit={this.onChangeSearchQuery} />
-        <MovieList movies={this.state.movies} />
+        {movies.length > 0 && <MovieList movies={movies} />}
       </>
     );
   }

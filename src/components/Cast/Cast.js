@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { getMovieCast } from '../../utils/movieApi';
+import defaultImage from '../../images/default.jpg';
+
 import styles from './Cast.module.css';
 
 class Cast extends Component {
@@ -19,38 +23,51 @@ class Cast extends Component {
     //
   }
 
+  profileUrl = path => {
+    return path ? `https://image.tmdb.org/t/p/w500${path}` : defaultImage;
+  };
+
   render() {
+    const { cast } = this.state;
+
     return (
-      <div className={styles.castWraper}>
-        <ul className={styles.castList}>
-          {this.state.cast.map(({ cast_id, profile_path, name, character }) => (
-            <li key={cast_id} className={styles.castItem}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-                alt={name}
-                className={styles.actorPhoto}
-              />
-              <p>Name: {name}</p>
-              <p>Character: {character}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <>
+        {!cast.length && (
+          <p>Sorry, we don`t have information about cast of this movie</p>
+        )}
+        {cast.length > 0 && (
+          <div className={styles.castWraper}>
+            <ul className={styles.castList}>
+              {this.state.cast.map(
+                ({ cast_id, profile_path, name, character }) => (
+                  <li key={cast_id} className={styles.castItem}>
+                    <img
+                      src={this.profileUrl(profile_path)}
+                      alt={name}
+                      className={styles.actorPhoto}
+                    />
+                    <p>Name: {name}</p>
+                    <p>Character: {character}</p>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
+        )}
+      </>
     );
   }
 }
 
 export default Cast;
 
-//   async componentDidMount() {
-//     const apiKey = '34bc77a7520537f31b17bec90ff2ee3c';
-//     axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
-//     const { movieId } = this.props.match.params;
-//     const response = await axios.get(
-//       `/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`,
-//     );
-//     // this.setState({ ...response.data });
-//     this.setState({ cast: response.data.cast });
-//     console.log(response.data.cast);
-//     console.log(this.state.cast);
-//   }
+Cast.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      cast_id: PropTypes.number.isRequired,
+      profile_path: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+    }),
+  ),
+};

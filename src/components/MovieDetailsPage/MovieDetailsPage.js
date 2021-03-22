@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import defaultImage from '../../images/default.jpg';
 import styles from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = ({
@@ -9,13 +11,13 @@ const MovieDetailsPage = ({
   overview,
   genres,
 }) => {
+  const posterURL = poster_path
+    ? `https://image.tmdb.org/t/p/w500${poster_path}`
+    : defaultImage;
+
   return (
     <div className={styles.wraper}>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt={title}
-        className={styles.poster}
-      />
+      <img src={posterURL} alt={title} className={styles.poster} />
       <div className={styles.movieInfoWraper}>
         <h2> {title}</h2>
 
@@ -38,3 +40,12 @@ const MovieDetailsPage = ({
 };
 
 export default MovieDetailsPage;
+
+MovieDetailsPage.propTypes = {
+  poster_path: PropTypes.string,
+  title: PropTypes.string,
+  vote_average: PropTypes.number,
+  release_date: PropTypes.string,
+  overview: PropTypes.string,
+  genres: PropTypes.array,
+};
